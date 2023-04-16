@@ -11,8 +11,8 @@ users.push({
     password:"Hardcoded_password"
 })
 
-import signupRouter from "./Routers/signupRouter.js"
-app.use(signupRouter);
+import userRouter from "./Routers/userRouter.js"
+app.use(userRouter);
 
 const PORT = 8080;
 app.listen(PORT, () => {
