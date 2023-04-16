@@ -11,9 +11,6 @@ users.push({
     password:"Hardcoded_password"
 })
 
-import testRouter from "./Routers/testRouter.js";
-app.use(testRouter);
-
 import signupRouter from "./Routers/signupRouter.js"
 app.use(signupRouter);
 
