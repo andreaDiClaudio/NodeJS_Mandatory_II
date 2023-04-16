@@ -6,14 +6,25 @@ import { log } from "console";
 const app = express();
 app.use(express.json()); //for parsing the body
 
+/*Session*/
 dotenv.config();//needed to read .env file
-
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false, //it will resave the session even if changes do not happen
     saveUninitialized: true,
     cookie: { secure: false } //'secure : true' expect us to use https    
-}))
+}));
+
+/*RATE LIMIT */
+import rateLimit from "express-rate-limit"
+const apiLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 10, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
+app.use("/login", apiLimiter);
+app.use("/home", apiLimiter);
 
 //Mocking Database
 export const users = [];

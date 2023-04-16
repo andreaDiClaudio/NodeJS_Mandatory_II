@@ -1,7 +1,6 @@
 import { Router } from "express";
 import bcrypt from "bcrypt";
 import { users } from "../app.js"
-import { log } from "console";
 
 const router = Router();
 
@@ -9,7 +8,7 @@ let userIdCounter = 0;
 export let hashedPassword = "";
 
 router.get("/users", (req, res, next) => {
-    res.send({ data: users })
+    res.send({ data: users });
 });
 
 router.post("/user", async (req, res, next) => {

@@ -1,10 +1,9 @@
 import { Router } from "express";
 import bcrypt from "bcrypt";
-import session from "express-session";
 
 //So that i can authenticate the user credentials. I think it will change once the database will be implemented
-import { hashedPassword } from "../Routers/userRouter.js"
-import { isAuthenticated, users } from "../app.js"
+import { hashedPassword } from "../Routers/userRouter.js";
+import { isAuthenticated, users } from "../app.js";
 
 const router = Router();
 
@@ -47,11 +46,5 @@ router.post("/login", async (req, res, next) => {
         return res.status(404).json({ message: "User Not found" });
     }
 });
-
-router.post("/logout", isAuthenticated, (req, res) => {
-    req.session.destroy(() => {
-        res.send({ message: "Goodbye!" })
-    })
-})
 
 export default router;
