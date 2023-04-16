@@ -17,6 +17,9 @@ users.push({
 import userRouter from "./Routers/userRouter.js"
 app.use(userRouter);
 
+import loginRouter from "./Routers/loginRouter.js"
+app.use(loginRouter);
+
 const PORT = 8080;
 app.listen(PORT, () => {
     log("Server is running on port", PORT);
