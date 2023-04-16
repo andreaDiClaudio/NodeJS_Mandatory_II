@@ -2,14 +2,17 @@ import express from "express";
 import { log } from "console";
 
 const app = express();
+app.use(express.json()); //for parsing the body
 
 //Mocking Database
 export const users = [];
 users.push({
-    email:"hardcoded@mail.com",
-    username:"hardcoded_username",
-    password:"Hardcoded_password"
+    id: 0,
+    email: "hardcoded@mail.com",
+    username: "hardcoded_username",
+    password: "Hardcoded_password"
 })
+
 
 import userRouter from "./Routers/userRouter.js"
 app.use(userRouter);
