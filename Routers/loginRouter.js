@@ -4,7 +4,7 @@ import session from "express-session";
 
 //So that i can authenticate the user credentials. I think it will change once the database will be implemented
 import { hashedPassword } from "../Routers/userRouter.js"
-import { users } from "../app.js"
+import { isAuthenticated, users } from "../app.js"
 
 const router = Router();
 
@@ -48,20 +48,10 @@ router.post("/login", async (req, res, next) => {
     }
 });
 
-/*
-router.get("/gotham/:name", (req, res) => {
-    req.session.name = req.params.name;
-    res.send({message: `Hi ${req.session.name}`}) 
-  });
-
-  router.get("/gotham", (req,res) => {
-    res.send({message: `I rember you ${req.session.name}`})
-  })
-
-  router.get("/leavegotham", (req,res) => {
+router.post("/logout", isAuthenticated, (req, res) => {
     req.session.destroy(() => {
-        res.send({})
+        res.send({ message: "Goodbye!" })
     })
-  })*/
+})
 
 export default router;
