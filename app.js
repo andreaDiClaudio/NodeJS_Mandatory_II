@@ -6,7 +6,7 @@ import { log } from "console";
 const app = express();
 app.use(express.json()); //for parsing the body
 
-/*Session*/
+/*SESSION*/
 dotenv.config();//needed to read .env file
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -49,6 +49,9 @@ app.use(signupRouter);
 
 import homeRouter from "./Routers/homeRouter.js";
 app.use(homeRouter);
+
+import contactRouter from "./Routers/contactRouter.js";
+app.use(contactRouter);
 
 const PORT = 8080;
 app.listen(PORT, () => {
