@@ -1,14 +1,15 @@
 import { Router } from "express";
 import bcrypt from "bcrypt";
 import { users } from "../app.js"
+import db from "../Database/connection.js";
 
 const router = Router();
 
 let userIdCounter = 0;
 export let hashedPassword = "";
 
-router.get("/users", (req, res, next) => {
-    res.send({ data: users });
+router.get("/users", async (req, res, next) => {
+    res.send({ data: await db.all("SELECT * FROM users;") });
 });
 
 router.post("/user", async (req, res, next) => {
@@ -34,6 +35,10 @@ router.post("/user", async (req, res, next) => {
     // Hash the password using bcrypt
     hashedPassword = await bcrypt.hash(password, 12);
 
+    //Saving the user in the db
+    const { lastID } = await db.run("INSERT INTO users (username, email, password) VALUES (?, ?, ?);", [username, email, hashedPassword]);
+
+    /*
     //creates and saves a new user in the array
     const newUser = {
         id: ++userIdCounter,
@@ -42,10 +47,10 @@ router.post("/user", async (req, res, next) => {
         password: hashedPassword
     }
     users.push(newUser);
+    */
 
     return res.status(201).json({
-        message: `User created successfully`,
-        new_user: newUser
+        message: `User created successfully`
     });
 });
 
