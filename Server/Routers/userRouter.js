@@ -1,18 +1,16 @@
 import { Router } from "express";
 import bcrypt from "bcrypt";
-import { users } from "../app.js"
 import db from "../Database/connection.js";
 
 const router = Router();
 
-let userIdCounter = 0;
 export let hashedPassword = "";
 
 router.get("/users", async (req, res, next) => {
     res.send({ data: await db.all("SELECT * FROM users;") });
 });
 
-router.post("/user", async (req, res, next) => {
+router.post("/users", async (req, res, next) => {
     const { email, username, password, } = req.body;
 
     // Validate the required fields 
@@ -20,7 +18,7 @@ router.post("/user", async (req, res, next) => {
         return res.status(400).json({ message: 'Please provide all required credentials' });
     }
 
-    const user = users.find(user => user.username === username || user.email === email);
+    const user = await db.get('SELECT * FROM users WHERE email = ? AND username = ?', [email, username]);
     if (user) {
         // Check if a user with the same credentials already exists
         if (user.username === username && user.email === email) return res.status(400).json({ message: `User with the username '${username}' and email '${email}' already exists` });
@@ -37,17 +35,6 @@ router.post("/user", async (req, res, next) => {
 
     //Saving the user in the db
     const { lastID } = await db.run("INSERT INTO users (username, email, password) VALUES (?, ?, ?);", [username, email, hashedPassword]);
-
-    /*
-    //creates and saves a new user in the array
-    const newUser = {
-        id: ++userIdCounter,
-        email: email,
-        username: username,
-        password: hashedPassword
-    }
-    users.push(newUser);
-    */
 
     return res.status(201).json({
         message: `User created successfully`

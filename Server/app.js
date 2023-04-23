@@ -26,9 +26,6 @@ const apiLimiter = rateLimit({
 app.use("/login", apiLimiter);
 app.use("/home", apiLimiter);
 
-//Mocking Database
-export const users = [];
-
 // Middleware to check if the user is authenticated
 export function isAuthenticated(req, res, next) {
     if (req.session && req.session.user) {
