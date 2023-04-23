@@ -41,11 +41,14 @@ export function isAuthenticated(req, res, next) {
 import userRouter from "./Routers/userRouter.js";
 app.use(userRouter);
 
+import signupRouter from "./Routers/signupRouter.js";
+app.use(signupRouter);
+
 import loginRouter from "./Routers/loginRouter.js";
 app.use(loginRouter);
 
-import signupRouter from "./Routers/signupRouter.js";
-app.use(signupRouter);
+import logoutRouter from "./Routers/logoutRouter.js";
+app.use(logoutRouter);
 
 import homeRouter from "./Routers/homeRouter.js";
 app.use(homeRouter);
@@ -57,4 +60,3 @@ const PORT = 8080;
 app.listen(PORT, () => {
     log("Server is running on port", PORT);
 });
-

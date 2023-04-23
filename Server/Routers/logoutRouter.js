@@ -8,3 +8,5 @@ router.post("/logout", isAuthenticated, (req, res) => {
         res.send({ message: "Goodbye!" });
     });
 });
+
+export default router;
