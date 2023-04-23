@@ -1,9 +1,6 @@
 import { Router } from "express";
 import bcrypt from "bcrypt";
-
-//So that i can authenticate the user credentials. I think it will change once the database will be implemented
-import { hashedPassword } from "../Routers/userRouter.js";
-import { isAuthenticated, users } from "../app.js";
+import db from "../Database/connection.js";
 
 const router = Router();
 
@@ -20,22 +17,21 @@ router.post("/login", async (req, res, next) => {
     }
 
     //Check if user exists
-    const userFound = users.find(user => user.email === email);
+    const userFound = await db.get('SELECT * FROM users WHERE email = ?', [email]);
 
     if (userFound) {
 
         if (username != userFound.username || email != userFound.email) return res.status(404).json({ message: `Couldn't find user with username '${username}' and email '${email}'` });
 
         //Check if password is the same
-        const isSamePassword = await bcrypt.compare(password, hashedPassword);
+        const isSamePassword = await bcrypt.compare(password, userFound.password);
 
         if (isSamePassword) {
             //save the user info in the session
             req.session.user = {
                 id: userFound.id,
                 username: userFound.username,
-                email: userFound.email,
-                username: userFound.username
+                email: userFound.email
             };
 
             return res.status(200).json({ message: "Logged in" });
