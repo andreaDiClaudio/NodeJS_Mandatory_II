@@ -1,13 +1,15 @@
 <script>
   import { useNavigate, useLocation } from "svelte-navigator";
   import { user } from "../../stores/users.js";
+  import toastr from "toastr";
+    import 'toastr/build/toastr.min.css';
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  let email = '';
-  let username = '';
-  let password = '';
+  let email = 'a@gmail.com';//TODO eliminate once i finish development
+  let username = 'a';//TODO eliminate once i finish development
+  let password = 'a';//TODO eliminate once i finish development
   let message = '';
 
   function handleSubmit() {
@@ -29,8 +31,27 @@
         localStorage.setItem('user', JSON.stringify(currentUser));
         const from = ($location.state && $location.state.from) || "/home";
         navigate(from, { replace: true });
-      } else if (response.status === 400) {
-        message = "User already exists";
+      } else if (response.status === 404) {
+        message = "Wrong credentials";
+
+        toastr["error"]("Incorrect credentials");
+        toastr.options = {
+          "closeButton": false,
+          "debug": false,
+          "newestOnTop": false,
+          "progressBar": false,
+          "positionClass": "toast-top-right",
+          "preventDuplicates": false,
+          "onclick": null,
+          "hideDuration": "500",
+          "timeOut": "3000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut",
+          "showDuration": "300"
+    }
       }
     });
   }
