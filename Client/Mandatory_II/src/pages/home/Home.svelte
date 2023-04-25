@@ -39,11 +39,10 @@
 </script>
 
 <div id="page">
-<nav>
-    <form on:submit|preventDefault={handleSubmit}>
-        <button type="submit">logout</button>
-    </form>
-</nav>
-
-<h1>Welcome, {$user.username}!</h1>
+  <h1>Welcome, {$user.username}!</h1>
+  
+  <a href="/contact">Contact us</a>
+  <form on:submit|preventDefault={handleSubmit}>
+    <button type="submit" style="color:white">logout</button>
+  </form>
 </div>
