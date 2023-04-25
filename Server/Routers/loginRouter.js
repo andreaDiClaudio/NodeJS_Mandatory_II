@@ -4,10 +4,6 @@ import db from "../Database/connection.js";
 
 const router = Router();
 
-router.get("/login", (req, res) => {
-    res.send({ message: "LOGIN: TODO implement frontend in the future" })
-});
-
 router.post("/login", async (req, res, next) => {
     const { email, username, password, } = req.body;
 
