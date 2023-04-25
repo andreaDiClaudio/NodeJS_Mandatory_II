@@ -1,1 +1,26 @@
-<h1>This is home page</h1>
+<div id="page">
+    <div id="form-card-wrapper">
+        <div id="login-window">
+            <div id="title-wrapper">
+                <h1 id="title">Welcome</h1>
+                <div id="paragraph-wrapper">
+                    <p>Please log in to read the documentation.&nbsp</p>
+                    <form action="/signup" method="get">
+                        <button type="submit" id="signup-button">Don't you have an account?</button>
+                    </form>
+                </div>
+            </div>
+            <form id="login-form" action="/" method="post">
+                <div id="username-wrapper" data-name="username">
+                    <input id="username-input" class="input" type="text" name="username" placeholder="admin" required>
+                </div>
+                <div id="password-wrapper">
+                    <input id="password-input" class="input" type="password" name="password" placeholder="admin" required>
+                </div>
+                <div id="button-wrapper">
+                    <button id="submit-form-button" type="submit">Log in</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,1 +1,26 @@
-<h1>This is signup</h1>
+<div id="page">
+    <div id="form-card-wrapper">
+        <div id="login-window">
+            <div id="title-wrapper">
+                <h1 id="title">Sign up!</h1>
+                <div id="paragraph-wrapper">
+                    <p>Please create an account to read the documentation.&nbsp</p>
+                    <form action="/" method="get">
+                        <button type="submit" id="signup-button">Already have an account?</button>
+                    </form>
+                </div>
+            </div>
+            <form id="login-form" action="/users" method="post">
+                <div id="username-wrapper" data-name="username">
+                    <input id="username-input" class="input" type="text" name="username" placeholder="Username" required>
+                </div>
+                <div id="password-wrapper">
+                    <input id="password-input" class="input" type="password" name="password" placeholder="Password" required>
+                </div>
+                <div id="button-wrapper">
+                    <button id="submit-form-button" type="submit">Create Account</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
