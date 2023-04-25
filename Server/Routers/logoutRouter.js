@@ -3,9 +3,9 @@ import { isAuthenticated } from "../app.js";
 
 const router = Router();
 
-router.post("/logout", isAuthenticated, (req, res) => {
+router.post("/logout", (req, res) => {
     req.session.destroy(() => {
-        res.send({ message: "Goodbye!" });
+        res.sendStatus(200);
     });
 });
 
