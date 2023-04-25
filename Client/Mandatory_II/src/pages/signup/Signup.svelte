@@ -34,7 +34,7 @@
         <div id="title-wrapper">
           <h1 id="title">Sign up!</h1>
           <div id="paragraph-wrapper">
-            <p>Please create an account to read the documentation.</p>
+            <p>Please create an account</p>
             <a href="/">
               <button id="signup-button">Already have an account?</button>
             </a>

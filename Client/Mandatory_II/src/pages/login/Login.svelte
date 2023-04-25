@@ -1,4 +1,11 @@
 <script>
+
+  import { useNavigate, useLocation } from "svelte-navigator";
+	import { user } from "../../stores/users.js";
+
+  const navigate = useNavigate();
+	const location = useLocation();
+
     let email = '';
     let username = '';
     let password = '';
@@ -20,7 +27,9 @@
       })
       .then(response => {
         if (response.status === 200){
-                window.location.href = "/home";
+          user.set({ username, password });
+                const from = ($location.state && $location.state.from) || "/home";
+		            navigate(from, { replace: true });
             } else if (response.status === 400){
                 message = "User already exists";
             }
@@ -34,7 +43,7 @@
         <div id="title-wrapper">
           <h1 id="title">Welcome</h1>
           <div id="paragraph-wrapper">
-            <p>Please log in to read the documentation</p>
+            <p>Please log in</p>
             <a href="/signup">
               <button id="signup-button">Don't you have an account?</button>
             </a>

@@ -1,8 +1,11 @@
 <script>
  	import { Router, Link, Route } from "svelte-navigator";
+  import PrivateRoute from "./components/PrivateRoute.svelte";
+  import { user } from "./stores/users.js";
   import Login from "./pages/login/Login.svelte";
   import Signup from "./pages/signup/Signup.svelte";
   import Fallback from "./pages/fallBack/Fallback.svelte";
+  import Home from "./pages/home/Home.svelte";
 
 
   import "./css/login&signup.css";
@@ -17,6 +20,10 @@
   <Route path="/signup">
     <Signup />
   </Route>
+
+  <PrivateRoute path="/home" let:location>
+    <Home />
+  </PrivateRoute>
   
   <Route path="*">
     <Fallback />
