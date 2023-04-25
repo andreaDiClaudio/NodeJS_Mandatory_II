@@ -31,7 +31,6 @@ router.post('/contact', async (req, res) => {
 
         // Send a response to the client
         res.status(200).json({ message: `Email sent correctly! ${nodemailer.getTestMessageUrl(info)}` });
-        console.log(nodemailer.getTestMessageUrl(info));
     } catch (error) {
         console.error(error);
         res.status(500).send(`Error: ${error}`);
