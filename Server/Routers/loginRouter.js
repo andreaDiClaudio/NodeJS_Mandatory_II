@@ -4,6 +4,10 @@ import db from "../Database/connection.js";
 
 const router = Router();
 
+router.get("/login", (req, res) => {
+    res.status(200).json({ message: "Login" });
+});
+
 router.post("/login", async (req, res, next) => {
     const { email, username, password, } = req.body;
 

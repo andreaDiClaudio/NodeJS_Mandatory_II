@@ -1,41 +1,40 @@
 <script>
-
   import { useNavigate, useLocation } from "svelte-navigator";
-	import { user } from "../../stores/users.js";
+  import { user } from "../../stores/users.js";
 
   const navigate = useNavigate();
-	const location = useLocation();
+  const location = useLocation();
 
-    let email = '';
-    let username = '';
-    let password = '';
-    let message = '';
-  
-    async function handleSubmit() {
-      const data = { email, username, password };
-  
-      fetch('http://localhost:8080/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            'username': username,
-            'password': password,
-            'email': email
-        })
+  let email = '';
+  let username = '';
+  let password = '';
+  let message = '';
+
+  function handleSubmit() {
+    fetch('http://localhost:8080/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        'username': username,
+        'password': password,
+        'email': email
       })
-      .then(response => {
-        if (response.status === 200){
-          user.set({ username, password });
-                const from = ($location.state && $location.state.from) || "/home";
-		            navigate(from, { replace: true });
-            } else if (response.status === 400){
-                message = "User already exists";
-            }
-      });
-    }
-  </script>
+    })
+    .then(response => {
+      if (response.status === 200) {
+        const currentUser = { username, password };
+        user.set(currentUser);
+        localStorage.setItem('user', JSON.stringify(currentUser));
+        const from = ($location.state && $location.state.from) || "/home";
+        navigate(from, { replace: true });
+      } else if (response.status === 400) {
+        message = "User already exists";
+      }
+    });
+  }
+</script>
 
 <div id="page">
     <div id="form-card-wrapper">
