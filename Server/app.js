@@ -2,9 +2,15 @@ import express from "express";
 import session from "express-session";
 import dotenv from "dotenv";
 import { log } from "console";
+import cors from "cors";
 
 const app = express();
 app.use(express.json()); //for parsing the body
+
+app.use(cors({
+    credentials: true,
+    origin: true
+}));
 
 /*SESSION*/
 dotenv.config();//needed to read .env file
