@@ -44,9 +44,6 @@ export function isAuthenticated(req, res, next) {
 import userRouter from "./Routers/userRouter.js";
 app.use(userRouter);
 
-import signupRouter from "./Routers/signupRouter.js";
-app.use(signupRouter);
-
 import loginRouter from "./Routers/loginRouter.js";
 app.use(loginRouter);
 
