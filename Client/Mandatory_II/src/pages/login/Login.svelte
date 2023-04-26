@@ -7,9 +7,9 @@
   const navigate = useNavigate();
   const location = useLocation();
 
-  let email = 'a@gmail.com';//TODO eliminate once i finish development
-  let username = 'a';//TODO eliminate once i finish development
-  let password = 'a';//TODO eliminate once i finish development
+  let email = '';
+  let username = '';
+  let password = '';
   let message = '';
 
   function handleSubmit() {

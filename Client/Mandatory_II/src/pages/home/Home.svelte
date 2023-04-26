@@ -40,9 +40,10 @@
 
 <div id="page">
   <h1>Welcome, {$user.username}!</h1>
-  
-  <a href="/contact">Contact us</a>
+  <br>
+  <a href="/contact"><button id="submit-form-button">Contact us</button></a>
+  <br>
   <form on:submit|preventDefault={handleSubmit}>
-    <button type="submit" style="color:white">logout</button>
+    <button type="submit" id="submit-form-button">logout</button>
   </form>
 </div>

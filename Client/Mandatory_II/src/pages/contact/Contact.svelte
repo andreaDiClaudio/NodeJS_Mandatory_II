@@ -24,8 +24,7 @@
             if (response.status === 200){
                 message = "Email sent successfully";  
                 response.json().then(data => {
-                
-                    toastr["success"](data.mess);
+                    toastr["success"](data.message);
                       toastr.options = {
                       "closeButton": false,
                       "debug": false,
@@ -66,10 +65,6 @@
                       }
             }
         })
-        .then(data => {
-          
-        });
-        
     }
 </script>
 
@@ -78,28 +73,28 @@
       <div id="login-window">
         <div id="title-wrapper">
           <h1 id="title">Contact us</h1>
-        <form id="login-form" on:submit|preventDefault={handleContact}>
-          <div id="email-wrapper">
-            <input id="email-input" class="input" type="email" name="email" placeholder="email@example.com" required bind:value={email}>
-          </div>
-          <div id="username-wrapper" data-name="username">
-            <input id="username-input" class="input" type="text" name="name" placeholder="name" required bind:value={name}>
-          </div>
-          <div id="subject-wrapper">
-            <input id="password-input" class="input" type="text" name="subject" placeholder="subject" required bind:value={subject}>
-          </div>
-          <div id="text-wrapper">
-            <input id="password-input" class="input" type="text" name="text" placeholder="text" required bind:value={text}>
-          </div>
-          <div id="button-wrapper">
-            <button id="submit-form-button" type="submit">Send email</button>
-          </div>
-        </form>
-
-        <div id="button-wrapper">
-            <a href="/home">Home Page</a>
-          </div>
       </div>
+      <form id="login-form" on:submit|preventDefault={handleContact}>
+        <div id="email-wrapper">
+          <input id="email-input" class="input" type="email" name="email" placeholder="email@example.com" required bind:value={email}>
+        </div>
+        <div id="username-wrapper" data-name="username">
+          <input id="username-input" class="input" type="text" name="name" placeholder="name" required bind:value={name}>
+        </div>
+        <div id="subject-wrapper">
+          <input id="password-input" class="input" type="text" name="subject" placeholder="subject" required bind:value={subject}>
+        </div>
+        <div id="text-wrapper">
+          <textarea id="password-input" class="input"  name="text" placeholder="text" required bind:value={text} style="width: 758px; height:30px; resize:none"></textarea>
+        </div>
+        <div id="button-wrapper">
+          <button id="submit-form-button" type="submit">Send email</button>
+        </div>
+      </form>
+
+      <div id="button-wrapper">
+          <a href="/home"><button id="submit-form-button">Home Page</button></a>
+        </div>
     </div>
   </div>
 </div>

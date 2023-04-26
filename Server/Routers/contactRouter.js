@@ -6,7 +6,6 @@ const router = Router();
 /*NODEMAILER*/
 router.post('/contact', async (req, res) => {
     try {
-        console.log(req.body);
         // Create a test account using createTestAccount
         let testAccount = await nodemailer.createTestAccount();
 
